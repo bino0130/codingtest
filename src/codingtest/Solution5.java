@@ -63,7 +63,6 @@ class Solution5 {
 		
 		return answer; // 리스트 1번째 값 리턴
 	}
-	
 
 	public static void main(String[] args) {
 		Solution5 T = new Solution5();

@@ -18,7 +18,6 @@ class Solution4 {
 				cnt++;
 			}
 			
-			
 		}
 
 		return answer;
