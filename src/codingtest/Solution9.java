@@ -3,6 +3,7 @@ package codingtest;
 import java.util.Arrays;
 
 // 1일차 9번문제 침몰하는 타이타닉
+// 
 class Solution9 {
 	public int solution(int[] nums, int m) {
 		int answer = 0;
