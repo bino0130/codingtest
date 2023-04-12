@@ -24,7 +24,7 @@ public class Baemin {
 		int pobiAddLeft = 0, pobiMulLeft = 1, pobiLeft, pobiAddRight = 0, pobiMulRight = 1, pobiRight, 
 				crongAddLeft = 0, crongMulLeft = 1, crongLeft, crongAddRight = 0, crongMulRight = 1, crongRight,
 				 p1, p2, c1, c2;
-		
+		//////////////////////////////////////////////////////////
 		p1 = (int) (Math.random() * 400) + 1;
 		if (p1 == 1 || p1 == 2 || p1 == 399 || p1 == 400) {
 			p1 = (int) (Math.random() * 400) + 1;
@@ -46,7 +46,7 @@ public class Baemin {
 		}
 		
 		c2 = c1 + 1;
-
+		////////////////////////////////////////////////////////////
 		pobi.add(p1); // 포비 첫번째 값
 		pobi.add(p2); // 포비 두번째 값
 		System.out.print("pobi : {");
@@ -58,6 +58,7 @@ public class Baemin {
 			}
 		}
 		System.out.println("}");
+		////////////////////////////////////////////////////////////
 		crong.add(c1); // 크롱 첫번째 값
 		crong.add(c2); // 크롱 두번째 값
 		System.out.print("crong : {");
@@ -69,6 +70,7 @@ public class Baemin {
 			}
 		}
 		System.out.println("}");
+		
 
 		String pobi1 = String.valueOf(pobi.get(0)); // 포비 첫번째 값 문자열로 변경
 		String pobi2 = String.valueOf(pobi.get(1)); // 포비 두번째 값 문자열로 변경
@@ -127,29 +129,31 @@ public class Baemin {
 		crongFinal = Math.max(crongLeft, crongRight); // crongFinal 값 구하기
 		
 		System.out.println("crongFinal : " + crongFinal);
-		return solution(pobiFinal, crongFinal);
+		int answer = solution(pobiFinal, crongFinal); 
+		return answer;
 	}
 
 	public static int solution(int pobiFinal, int crongFinal) {
-		int answer;
+		int answer = 0;
 		if (pobiFinal > crongFinal) {
 			answer = 1;
-			System.out.println("포비 승리! " + answer);
-			return answer;
+			System.out.println("포비 승리! " );
+			return 1;
 		} else if (crongFinal > pobiFinal) {
 			answer = 2;
-			System.out.println("크롱 승리! " + answer);
-			return answer;
+			System.out.println("크롱 승리! " );
+			return 2;
 		} else {
 			answer = 0;
-			System.out.println("무승부! " + answer);
-			return answer;
+			System.out.println("무승부! " );
+			return 0;
 		}
-
+//		return answer;
 	}
 
 	public static void main(String[] args) {
 		randomSplit();
+//		solution(pobiFinal, crongFinal);
 	}
 
 }
