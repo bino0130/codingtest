@@ -144,7 +144,7 @@ public class OutputClass {
 						outputCNY10, outputCNY5, outputCNY1);
 		
 	}
-	public void printResultCNY(int returnRealCNY, int outputCNY100, int outputCNY50, int outputCNY20, int outputCNY10,
+	private void printResultCNY(int returnRealCNY, int outputCNY100, int outputCNY50, int outputCNY20, int outputCNY10,
 			int outputCNY5, int outputCNY1) {
 		System.out.println(returnRealCNY + " Yen");
 		System.out.println("100위안 지폐 " + outputCNY100 + "장");
