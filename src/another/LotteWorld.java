@@ -1,4 +1,4 @@
-package chap01;
+package another;
 
 import java.util.Scanner;
 //	롯데월드 매표소
@@ -126,26 +126,26 @@ public class LotteWorld {
 		}
 
 		switch (specificCase) {
-			case 1:
-				discount = 1; // 없음
-				return discount;
-			case 2:
-				discount = 0.6; // 장애인
-				return discount;
-			case 3:
-				discount = 0.5; // 국가유공자
-				return discount;
-			case 4:
-				discount = 0.8; // 다자녀
-				return discount;
-			case 5:
-				discount = 0.85; // 임산부
-				return discount;
+		case 1:
+			discount = 1; // 없음
+			return discount;
+		case 2:
+			discount = 0.6; // 장애인
+			return discount;
+		case 3:
+			discount = 0.5; // 국가유공자
+			return discount;
+		case 4:
+			discount = 0.8; // 다자녀
+			return discount;
+		case 5:
+			discount = 0.85; // 임산부
+			return discount;
 		}
 		return 0;
 	}
 
-	int calculPrice(int selectTicket, String ageGroup, String gender) throws Exception {
+	int calculPrice(int selectTicket, String ageGroup, String gender) throws Exception { // 가격 계산
 		int ticketNumbers, temporaryPrice = 0, finalPrice;
 		double discountTicket;
 
@@ -159,128 +159,128 @@ public class LotteWorld {
 		}
 
 		switch (selectTicket) {
-			case 1:
-				switch (ageGroup) {
-					case "노인":
-						if (discountTicket == 1) {
-							temporaryPrice = 46000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						}
-						break;
-					case "성인":
-						if (discountTicket == 1) {
-							temporaryPrice = 59000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (59000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (59000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (59000 * discountTicket);
-						} else if (discountTicket == 0.85) {
-							temporaryPrice = (int) (59000 * discountTicket);
-						}
-						break;
-					case "청소년":
-						if (discountTicket == 1) {
-							temporaryPrice = 52000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (52000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (52000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (52000 * discountTicket);
-						}
-						break;
-					case "어린이":
-						if (discountTicket == 1) {
-							temporaryPrice = 46000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (46000 * discountTicket);
-						}
-						break;
-					case "베이비":
-						if (discountTicket == 1) {
-							temporaryPrice = 15000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						}
-						break;
+		case 1:
+			switch (ageGroup) {
+			case "노인":
+				if (discountTicket == 1) {
+					temporaryPrice = 46000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (46000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (46000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (46000 * discountTicket);
 				}
 				break;
-			case 2:
-				switch (ageGroup) {
-					case "노인":
-						if (discountTicket == 1) {
-							temporaryPrice = 35000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						}
-						break;
-					case "성인":
-						if (discountTicket == 1) {
-							temporaryPrice = 47000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (47000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (47000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (47000 * discountTicket);
-						} else if (discountTicket == 0.85) {
-							temporaryPrice = (int) (47000 * discountTicket);
-						}
-						break;
-					case "청소년":
-						if (discountTicket == 1) {
-							temporaryPrice = 41000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (41000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (41000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (41000 * discountTicket);
-						}
-						break;
-					case "어린이":
-						if (discountTicket == 1) {
-							temporaryPrice = 35000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (35000 * discountTicket);
-						}
-						break;
-					case "베이비":
-						if (discountTicket == 1) {
-							temporaryPrice = 15000;
-						} else if (discountTicket == 0.6) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						} else if (discountTicket == 0.5) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						} else if (discountTicket == 0.8) {
-							temporaryPrice = (int) (15000 * discountTicket);
-						}
-						break;
+			case "성인":
+				if (discountTicket == 1) {
+					temporaryPrice = 59000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (59000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (59000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (59000 * discountTicket);
+				} else if (discountTicket == 0.85) {
+					temporaryPrice = (int) (59000 * discountTicket);
 				}
 				break;
+			case "청소년":
+				if (discountTicket == 1) {
+					temporaryPrice = 52000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (52000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (52000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (52000 * discountTicket);
+				}
+				break;
+			case "어린이":
+				if (discountTicket == 1) {
+					temporaryPrice = 46000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (46000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (46000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (46000 * discountTicket);
+				}
+				break;
+			case "베이비":
+				if (discountTicket == 1) {
+					temporaryPrice = 15000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				}
+				break;
+			}
+			break;
+		case 2:
+			switch (ageGroup) {
+			case "노인":
+				if (discountTicket == 1) {
+					temporaryPrice = 35000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				}
+				break;
+			case "성인":
+				if (discountTicket == 1) {
+					temporaryPrice = 47000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (47000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (47000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (47000 * discountTicket);
+				} else if (discountTicket == 0.85) {
+					temporaryPrice = (int) (47000 * discountTicket);
+				}
+				break;
+			case "청소년":
+				if (discountTicket == 1) {
+					temporaryPrice = 41000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (41000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (41000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (41000 * discountTicket);
+				}
+				break;
+			case "어린이":
+				if (discountTicket == 1) {
+					temporaryPrice = 35000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (35000 * discountTicket);
+				}
+				break;
+			case "베이비":
+				if (discountTicket == 1) {
+					temporaryPrice = 15000;
+				} else if (discountTicket == 0.6) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				} else if (discountTicket == 0.5) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				} else if (discountTicket == 0.8) {
+					temporaryPrice = (int) (15000 * discountTicket);
+				}
+				break;
+			}
+			break;
 		}
 		finalPrice = temporaryPrice * ticketNumbers;
 		return finalPrice;
