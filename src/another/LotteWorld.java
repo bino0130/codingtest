@@ -9,16 +9,6 @@ import java.util.Scanner;
 //	위의 입력을 반복할 것인지 종료할 것인지 물어본다.
 //	종료를 하게되면 지금까지 주문 내역이 모두 출력된다.
 //	완전 프로그램 종료를 하게 되면 현재까지의 매출 내역을 파일로 저장한다
-//	주간권 노인 : 46000
-//	주간권 성인 : 59000
-//	주간권 청소년 : 52000
-//	주간권 어린이 : 46000
-//	주간권 유아 : 15000
-//	야간권 노인 : 35000
-//	야간권 성인 : 47000
-//	야간권 청소년 : 41000
-//	야간권 어린이 : 35000
-//	야간권 유아 : 15000
 
 public class LotteWorld {
 	int choiceDayNight() throws Exception { // 주간권/야간권 선택
@@ -114,7 +104,7 @@ public class LotteWorld {
 		int specificCase;
 		double discount;
 
-		System.out.println("우대사항을 선택하세요.");
+		System.out.printf("우대사항을 선택하세요.\n");
 		System.out.printf("1. 없음 (나이 우대는 자동처리)\n"); // 65세 이상은 어린이 요금과 동일하게 처리
 		System.out.printf("2. 장애인\n");
 		System.out.printf("3. 국가유공자\n");
