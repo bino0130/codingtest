@@ -3,9 +3,9 @@ package another;
 public class LotteMain {
 
 	public static void main(String[] args) throws Exception {
-		LotteInput li = new LotteInput();
+		LotteCalcul lc = new LotteCalcul();
 		
-		li.kiosk();
+		lc.kiosk();
 	}
 
 }

@@ -1,6 +1,12 @@
 package another;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LotteCalcul {
+	private List<OrderList> data = new ArrayList<OrderList>();
+	private int totalCost = 0;
+
 	String calculDayNightTicket(int inputSelectTicket) throws Exception {
 		String ticketType = "";
 
@@ -68,10 +74,10 @@ public class LotteCalcul {
 		String gender = "";
 		int genderDigit = Character.getNumericValue(socialNumber.charAt(6));
 		if (genderDigit == 2 || genderDigit == 4) {
-			gender = "woman";
+			gender = "여성";
 			return gender;
 		} else if (genderDigit == 1 || genderDigit == 3) {
-			gender = "man";
+			gender = "남성";
 		}
 		return "";
 	}
@@ -129,7 +135,7 @@ public class LotteCalcul {
 		gender = ageGender[1];
 
 		if (discountRate == 0.85) {
-			if (!ageGroup.equals("성인") || !gender.equals("woman")) {
+			if (!ageGroup.equals("성인") || !gender.equals("여성")) {
 				throw new Exception("임산부 우대사항은 성인 여성에게만 적용됩니다."); // 예외 처리
 			}
 		}
@@ -260,6 +266,9 @@ public class LotteCalcul {
 		}
 
 		finalPrice = temporaryPrice * ticketNumbers;
+		
+		totalCost += finalPrice;
+		saveData(ticketType, ageGroup, gender, ticketNumbers, discountRate, finalPrice, totalCost);
 
 		return lo.printPrice(finalPrice);
 	}
@@ -270,5 +279,59 @@ public class LotteCalcul {
 			throw new Exception("error"); // 예외 처리
 		}
 		return lo.printEnd(selectContinue);
+	}
+
+	void saveData(String ticketType, String ageGroup, String gender, int amount, double option, int cost,
+			int totalCost) {
+
+		OrderList ol = new OrderList(ticketType, ageGroup, amount, option, cost, totalCost);
+		data.add(ol);
+	}
+
+	void output() {
+		System.out.println("\n\n==============롯데월드===============");
+		
+		for (OrderList order : data) {
+			String ticketType = order.getTicketType();
+			String ageGroup = order.getAgeGroup();
+			int amount = order.getAmount();
+			double option = order.getOption();
+			int cost = order.getCost();
+			int totalCost = order.getTotalCost();
+			String discount = null;
+			
+			if (option == 1) {
+				discount = "우대적용 없음";
+			} else if (option == 0.6) {
+				discount = "장애인 우대적용";
+			} else if (option == 0.5) {
+				discount = "국가유공자 우대적용";
+			} else if (option == 0.8) {
+				discount = "다자녀 우대적용";
+			} else if (option == 0.85) {
+				discount = "임산부 우대적용";
+			}
+
+			System.out.printf("%s %s X %d%s%d원%3s%s\n", ticketType, ageGroup, amount, " ", cost, " ", discount);
+		}
+		
+		System.out.printf("\n입장료 총액은 %d원 입니다.\n", totalCost);
+		System.out.println("==================================");
+	}
+
+	void kiosk() throws Exception {
+		LotteInput li = new LotteInput();
+
+		while (true) {
+			calculPrice();
+			int continueBreak = li.guideComment();
+
+			if (continueBreak == 1) {
+				continue;
+			} else if (continueBreak == 2) {
+				output();
+				break;
+			}
+		}
 	}
 }

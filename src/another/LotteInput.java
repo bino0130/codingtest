@@ -57,17 +57,5 @@ public class LotteInput {
 		sc.nextLine();
 	}
 
-	void kiosk() throws Exception {
-
-		while (true) {
-			lc.calculPrice();
-			int result = guideComment();
-
-			if (result == 1) {
-				continue;
-			} else if (result == 2) {
-				break;
-			}
-		}
-	}
+	
 }
