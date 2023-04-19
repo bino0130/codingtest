@@ -1,11 +1,13 @@
 package another;
 
+import java.io.*;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LotteCalcul {
-	private List<OrderList> data = new ArrayList<OrderList>();
-	private int totalCost = 0;
+	List<OrderList> data = new ArrayList<OrderList>();
+	int totalCost = 0;
 
 	String calculDayNightTicket(int inputSelectTicket) throws Exception {
 		String ticketType = "";
@@ -118,9 +120,9 @@ public class LotteCalcul {
 	}
 
 	int calculPrice() throws Exception {
+		LotteInput li = new LotteInput();
 		LotteTicketPrice ltp = new LotteTicketPrice();
 		LotteOutput lo = new LotteOutput();
-		LotteInput li = new LotteInput();
 		String ticketType, ageGroup, gender;
 		String[] ageGender;
 		int ticketNumbers, temporaryPrice = 0, finalPrice;
@@ -266,7 +268,7 @@ public class LotteCalcul {
 		}
 
 		finalPrice = temporaryPrice * ticketNumbers;
-		
+
 		totalCost += finalPrice;
 		saveData(ticketType, ageGroup, gender, ticketNumbers, discountRate, finalPrice, totalCost);
 
@@ -288,18 +290,46 @@ public class LotteCalcul {
 		data.add(ol);
 	}
 
-	void output() {
-		System.out.println("\n\n==============롯데월드===============");
-		
-		for (OrderList order : data) {
-			String ticketType = order.getTicketType();
-			String ageGroup = order.getAgeGroup();
-			int amount = order.getAmount();
-			double option = order.getOption();
-			int cost = order.getCost();
-			int totalCost = order.getTotalCost();
+	List<OrderList> deliverData() throws FileNotFoundException {
+		LotteOutput lo = new LotteOutput();
+		return lo.output(data, totalCost);
+	}
+
+	void kiosk() throws Exception {
+		LotteInput li = new LotteInput();
+		while (true) {
+			calculPrice();
+			int continueBreak = li.guideComment();
+
+			if (continueBreak == 1) {
+				continue;
+			} else if (continueBreak == 2) {
+				deliverData();
+				makeCsv(data);
+				break;
+			}
+		}
+	}
+
+	void makeCsv(List<OrderList> data) {
+		LotteOutput lo = new LotteOutput();
+		String filePath = "C:\\Users\\Bino\\Desktop\\user.csv";
+		String charsetName = "UTF-8"; // 인코딩 방식 설정
+		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filePath), charsetName)) {
+			System.out.println("starting write user.csv file: " + filePath);
+			writeCsv(writer, data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("starting read user.csv file");
+		lo.readCsv(filePath);
+	}
+
+	void writeCsv(Writer writer, List<OrderList> data) throws IOException {
+		writer.write("ticketType,ageGroup,amount,cost,discount\n");
+		for (OrderList csvList : data) {
+			double option = csvList.getOption();
 			String discount = null;
-			
 			if (option == 1) {
 				discount = "우대적용 없음";
 			} else if (option == 0.6) {
@@ -312,26 +342,11 @@ public class LotteCalcul {
 				discount = "임산부 우대적용";
 			}
 
-			System.out.printf("%s %s X %d%s%d원%3s%s\n", ticketType, ageGroup, amount, " ", cost, " ", discount);
-		}
-		
-		System.out.printf("\n입장료 총액은 %d원 입니다.\n", totalCost);
-		System.out.println("==================================");
-	}
-
-	void kiosk() throws Exception {
-		LotteInput li = new LotteInput();
-
-		while (true) {
-			calculPrice();
-			int continueBreak = li.guideComment();
-
-			if (continueBreak == 1) {
-				continue;
-			} else if (continueBreak == 2) {
-				output();
-				break;
-			}
+			writer.write(csvList.getTicketType() + ",");
+			writer.write(csvList.getAgeGroup() + ",");
+			writer.write(csvList.getAmount() + ",");
+			writer.write(csvList.getCost() + ",");
+			writer.write(discount + "\n");
 		}
 	}
 }

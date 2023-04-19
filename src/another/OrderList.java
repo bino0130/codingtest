@@ -7,9 +7,8 @@ public class OrderList {
 	private double option;
 	private int cost;
 	private int totalCost;
-	
-	public OrderList (String ticketType, String ageGroup, int amount, 
-			double option, int cost, int totalCost) {
+
+	public OrderList(String ticketType, String ageGroup, int amount, double option, int cost, int totalCost) {
 		this.ticketType = ticketType;
 		this.ageGroup = ageGroup;
 		this.amount = amount;
@@ -18,14 +17,14 @@ public class OrderList {
 		this.totalCost = totalCost;
 	}
 
-	public String getTicketType() { // int에서 String으로 변환
+	public String getTicketType() {
 		return ticketType;
 	}
 
-	public void setTicketType(String ticketType) { // int에서 String으로 변환
+	public void setTicketType(String ticketType) {
 		this.ticketType = ticketType;
 	}
-	
+
 	public String getAgeGroup() {
 		return ageGroup;
 	}
@@ -42,11 +41,11 @@ public class OrderList {
 		this.amount = amount;
 	}
 
-	public double getOption() { // int에서 String으로 변환
+	public double getOption() {
 		return option;
 	}
 
-	public void setOption(double option) { // int에서 String으로 변환
+	public void setOption(double option) {
 		this.option = option;
 	}
 
@@ -57,7 +56,7 @@ public class OrderList {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-	
+
 	public int getTotalCost() {
 		return totalCost;
 	}

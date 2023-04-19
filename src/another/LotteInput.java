@@ -3,10 +3,14 @@ package another;
 import java.util.Scanner;
 
 public class LotteInput {
-	private Scanner sc = new Scanner(System.in);
-	LotteCalcul lc = new LotteCalcul();
-
+	Scanner sc = null;
+	
+	public LotteInput() {
+		sc = new Scanner(System.in);
+	}
+	
 	String choiceDayNight() throws Exception {
+		LotteCalcul lc = new LotteCalcul();
 		System.out.printf("권종을 선택하세요.\n");
 		System.out.printf("1. 주간권\n");
 		System.out.printf("2. 야간권\n");
@@ -16,6 +20,7 @@ public class LotteInput {
 	}
 
 	String[] inputSocialNumber() throws Exception {
+		LotteCalcul lc = new LotteCalcul();
 		System.out.printf("주민등록번호를 입력하세요\n");
 		String socialNumber = sc.nextLine(); // 123456-1234567에서 '-' 빼고 입력
 
@@ -23,6 +28,7 @@ public class LotteInput {
 	}
 
 	int countNumber() throws Exception {
+		LotteCalcul lc = new LotteCalcul();
 		System.out.printf("몇 개를 주문하시겠습니까? (최대 10개)\n");
 		int numberOfOrders = sc.nextInt();
 
@@ -30,6 +36,7 @@ public class LotteInput {
 	}
 
 	double treatment() throws Exception {
+		LotteCalcul lc = new LotteCalcul();
 		int specificCase;
 		System.out.printf("우대사항을 선택하세요.\n");
 		System.out.printf("1. 없음 (나이 우대는 자동처리)\n"); // 65세 이상은 어린이 요금과 동일하게 처리
@@ -43,6 +50,7 @@ public class LotteInput {
 	}
 
 	int guideComment() throws Exception {
+		LotteCalcul lc = new LotteCalcul();
 		int selectContinue;
 
 		System.out.printf("\n계속 발권 하시겠습니까?\n");
