@@ -64,6 +64,4 @@ public class LotteInput {
 	void removeEnter() {
 		sc.nextLine();
 	}
-
-	
 }
