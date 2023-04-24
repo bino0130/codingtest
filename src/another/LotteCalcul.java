@@ -1,7 +1,6 @@
 package another;
 
 import java.io.*;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class LotteCalcul {
 	List<OrderList> data = new ArrayList<OrderList>();
 	int totalCost = 0;
 
-	String calculDayNightTicket(int inputSelectTicket) throws Exception {
+	String calculDayNightTicket(int inputSelectTicket) throws Exception { // 권종 선택
 		String ticketType = "";
 
 		if (inputSelectTicket < 1 || inputSelectTicket > 2) {
@@ -26,7 +25,7 @@ public class LotteCalcul {
 		return "";
 	}
 
-	String[] calculSocialNumber(String socialNumber) throws Exception {
+	String[] calculSocialNumber(String socialNumber) throws Exception { // 주민번호 입력받아 나이,성별 구하기 
 		LotteOutput lo = new LotteOutput();
 		int birthYear = 0, age;
 		String ageGroup = null, gender = null;
@@ -72,7 +71,7 @@ public class LotteCalcul {
 		}
 	}
 
-	String judgeFemale(String socialNumber) {
+	String judgeFemale(String socialNumber) { // 성별 판단
 		String gender = "";
 		int genderDigit = Character.getNumericValue(socialNumber.charAt(6));
 		if (genderDigit == 2 || genderDigit == 4) {
@@ -84,7 +83,7 @@ public class LotteCalcul {
 		return "";
 	}
 
-	int calculCountNumbers(int numberOfOrders) throws Exception {
+	int calculCountNumbers(int numberOfOrders) throws Exception { // 티켓 개수 계산
 		if (numberOfOrders > 10 || numberOfOrders < 0) {
 			throw new Exception("주문 가능 개수는 1인당 1개에서 최대 10개 입니다.\n"); // 예외 처리
 		}
@@ -92,7 +91,7 @@ public class LotteCalcul {
 		return numberOfOrders;
 	}
 
-	double calculTreatment(int specificCase) throws Exception {
+	double calculTreatment(int specificCase) throws Exception { // 우대사항
 		double discount = 0;
 
 		if (specificCase < 1 || specificCase > 5) {
@@ -119,7 +118,7 @@ public class LotteCalcul {
 		return discount;
 	}
 
-	int calculPrice() throws Exception {
+	int calculPrice() throws Exception { // 권종, 연령대, 성별, 티켓 개수 리턴받아 최종 가격 계산
 		LotteInput li = new LotteInput();
 		LotteTicketPrice ltp = new LotteTicketPrice();
 		LotteOutput lo = new LotteOutput();
@@ -128,15 +127,15 @@ public class LotteCalcul {
 		int ticketNumbers, temporaryPrice = 0, finalPrice;
 		double discountRate;
 
-		ticketType = li.choiceDayNight();
+		ticketType = li.choiceDayNight(); // 권종
 		li.removeEnter();
-		ageGender = li.inputSocialNumber();
-		ticketNumbers = li.countNumber();
-		discountRate = li.treatment();
-		ageGroup = ageGender[0];
-		gender = ageGender[1];
+		ageGender = li.inputSocialNumber(); // 배열 ageGender (연령대, 성별포함)
+		ticketNumbers = li.countNumber(); // 티켓 개수
+		discountRate = li.treatment(); // 우대사항
+		ageGroup = ageGender[0]; // 연령대
+		gender = ageGender[1]; // 성별
 
-		if (discountRate == 0.85) {
+		if (discountRate == 0.85) { // 임산부 예외처리
 			if (!ageGroup.equals("성인") || !gender.equals("여성")) {
 				throw new Exception("임산부 우대사항은 성인 여성에게만 적용됩니다."); // 예외 처리
 			}
@@ -267,10 +266,10 @@ public class LotteCalcul {
 			break;
 		}
 
-		finalPrice = temporaryPrice * ticketNumbers;
+		finalPrice = temporaryPrice * ticketNumbers; // 최종 가격 = 임시가격 * 티켓 개수
 
-		totalCost += finalPrice;
-		saveData(ticketType, ageGroup, gender, ticketNumbers, discountRate, finalPrice, totalCost);
+		totalCost += finalPrice; // 토탈 가격 = 최종가격 누적합
+		saveData(ticketType, ageGroup, gender, ticketNumbers, discountRate, finalPrice, totalCost); // savedata에 parameter 전달
 
 		return lo.printPrice(finalPrice);
 	}
@@ -280,14 +279,15 @@ public class LotteCalcul {
 		if (selectContinue < 1 && selectContinue > 2) {
 			throw new Exception("error"); // 예외 처리
 		}
-		return lo.printEnd(selectContinue);
+		return lo.printEnd(selectContinue); // LotteOutput의 PrintEnd에 selecContinue를 parameter로 리턴
 	}
 
 	void saveData(String ticketType, String ageGroup, String gender, int amount, double option, int cost,
 			int totalCost) {
 
+		// 6개의 변수를 parameter로 받는 OrderList 객체 ol 선언
 		OrderList ol = new OrderList(ticketType, ageGroup, amount, option, cost, totalCost);
-		data.add(ol);
+		data.add(ol); // data에 ol 추가
 	}
 
 	List<OrderList> deliverData() throws FileNotFoundException {
