@@ -16,6 +16,69 @@ public class LotteTicketPrice {
 	private final int NightKids = 35000;
 	private final int NightBaby = 15000;
 
+	private String LANGUAGE = ""; // kor : 0, eng : 1
+
+	public String TICKET_TYPE_QUESTION;
+
+	public void startLanguage(String country) throws Exception {
+		LotteCalcul lc = new LotteCalcul();
+		LotteInput li = new LotteInput();
+		LANGUAGE = country;
+		try {
+			while(true) {
+				if (LANGUAGE.equals("KR")) {
+					setLANGUAGE("KR");
+					lc.calculPrice(LANGUAGE);
+//					li.guideComment(LANGUAGE);
+					int continueBreak = li.guideComment(LANGUAGE);
+					if (continueBreak == 1) {
+						continue;
+					} else if (continueBreak == 2) {
+						lc.deliverData(LANGUAGE);
+						lc.makeCsv(LANGUAGE, lc.data);
+						break;
+					}
+					
+				} else if (LANGUAGE.equals("US")) {
+					setLANGUAGE("US");
+					lc.calculPrice(LANGUAGE);
+//					li.guideComment(LANGUAGE);
+					int continueBreak = li.guideComment(LANGUAGE);
+					if (continueBreak == 1) {
+						continue;
+					} else if (continueBreak == 2) {
+						lc.deliverData(LANGUAGE);
+						lc.makeCsv(LANGUAGE, lc.data);
+						break;
+					}
+				} else if (LANGUAGE.equals("ES")) {
+					setLANGUAGE("ES");
+					lc.calculPrice(LANGUAGE);
+//					li.guideComment(LANGUAGE);
+					int continueBreak = li.guideComment(LANGUAGE);
+					if (continueBreak == 1) {
+						continue;
+					} else if (continueBreak == 2) {
+						lc.deliverData(LANGUAGE);
+						lc.makeCsv(LANGUAGE, lc.data);
+						break;
+					}
+					
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getLANGUAGE() {
+		return LANGUAGE;
+	}
+
+	public void setLANGUAGE(String lANGUAGE) {
+		LANGUAGE = lANGUAGE;
+	}
+
 	public int getDayOld() {
 		return DayOld;
 	}
