@@ -702,13 +702,10 @@ public class LotteCalcul {
 
 			totalCost += finalPrice; // 토탈 가격 = 최종가격 누적합
 			saveData(ticketType, ageGroup, gender, ticketNumbers, discountRate, finalPrice, totalCost); // savedata에
-																										// parameter 전달
 
 			return lo.printPrice(LANGUAGE, finalPrice);
 		}
 		return 0;
-		
-
 	}
 
 	int decideContinue(String LANGUAGE, int selectContinue) throws Exception {
